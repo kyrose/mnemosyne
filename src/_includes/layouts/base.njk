@@ -1,0 +1,97 @@
+{% set assetsDir = '/assets/' %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      content="width=device-width, initial-scale=1.0"
+      name="viewport"
+    />
+    <title>{{ title }} @ {{ site.name }}</title>
+    <meta
+      content="{{ description }}"
+      name="description"
+    />
+    <link
+      href="{{ assetsDir }}css/style.css?{% version %}"
+      rel="stylesheet"
+    >
+    <link
+      href="https://fonts.gstatic.com"
+      rel="preconnect"
+    >
+    <link
+      as="style"
+      crossorigin="anonymous"
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital@0;1&display=swap"
+      rel="preload"
+    >
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital@0;1&display=swap"
+      rel="stylesheet"
+    >
+    <link
+      href="{{ assetsDir }}images/apple-touch-icon.png?{% version %}"
+      rel="apple-touch-icon"
+      sizes="180x180"
+      type="image/png"
+    >
+    <link
+      href="{{ assetsDir }}images/favicon-32x32.png?{% version %}"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    >
+    <link
+      href="{{ assetsDir }}images/favicon-16x16.png?{% version %}"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    >
+  </head>
+  <body class="bg-white debug-screens flex h-screen min-h-screen relative">
+    {% include 'partials/_header.njk' %}
+
+    {% block nav %}{% endblock %}
+
+    <div
+      class="flex flex-col flex-1 mt-20 overflow-y-auto"
+      id="content"
+    >
+      <main class="flex-1 pt-4">
+        <article>
+          {% include 'partials/_page_updated.njk' %}
+
+          <section class="max-w-5xl mt-4 mx-auto px-6 lg:px-8 xl:px-12">
+            <header>
+              <h1 class="font-extrabold mb-10 text-5xl">{{ title }}</h1>
+            </header>
+
+            <div class="prose text-gray-700 sm:prose lg:prose-lg xl:prose-md">
+              {{ content | safe }}
+            </div>
+
+            {% block prevnext %}{% endblock %}
+          </section>
+        </article>
+      </main>
+
+      {% include 'partials/_footer.njk' %}
+    </div>
+
+    {% include 'partials/_scroll_top.njk' %}
+
+    {% include 'partials/_cookies.njk' %}
+
+    <script
+      src="{{ assetsDir }}js/main.js?{% version %}"
+      type="module"
+    ></script>
+    <script
+      crossorigin="anonymous"
+      integrity="sha512-0QarUp4p9r5IqUgSRyP89BHga45OpEd7VR8lbRkJkf48p/EhcU742fWUpKpoDyu9N6XYAEq/vz6m6z1OolnsDw=="
+      src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"
+    ></script>
+  </body>
+</html>
